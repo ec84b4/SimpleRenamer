@@ -20,9 +20,25 @@
               MouseLeftButtonDown="GHead_MouseLeftButtonDown"
               VerticalAlignment="Top">
             <Grid x:Name="GHead_G_Logo"
-                  Margin="-1,-1,355,0"
+                  Margin="-1,-1,358,0"
                   Height="31"
-                  Background="#FF006654" />
+                  Background="#FF006654"
+                  Width="31"
+                  Visibility="Hidden">
+                <Image HorizontalAlignment="Left"
+                       Height="31"
+                       VerticalAlignment="Top"
+                       Width="31"
+                       Source="pack://siteoforigin:,,,/Resources/icon1.png"
+                       Margin="0,0,-3,0" />
+            </Grid>
+            <Label Content="Simple Renamer"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Margin="30,0,0,0"
+                   FontFamily="Segoe UI Light"
+                   FontSize="14"
+                   Padding="5" />
         </Grid>
 
         <Menu x:Name="Menu"
@@ -77,7 +93,8 @@
                          MaxLines="1"
                          Padding="0,3.5,0,0"
                          TextChanged="Path_Tb_Path_TextChanged"
-                         TabIndex="0" />
+                         TabIndex="0"
+                         MouseDoubleClick="Path_Tb_Path_MouseDoubleClick" />
                 <Label x:Name="Path_Lbl_FakePath"
                        Content="Enter the path folder or choose by button."
                        VerticalAlignment="Top"
@@ -86,7 +103,8 @@
                        Opacity="0.6"
                        Cursor="IBeam"
                        MouseEnter="Path_Lbl_FakePath_MouseEnter"
-                       MouseLeave="Path_Lbl_FakePath_MouseLeave" />
+                       MouseLeave="Path_Lbl_FakePath_MouseLeave"
+                       MouseDoubleClick="Path_Lbl_FakePath_MouseDoubleClick" />
             </Grid>
         </GroupBox>
         <GroupBox x:Name="GbReplace"
@@ -110,7 +128,8 @@
                          Panel.ZIndex="2"
                          TabIndex="3"
                          TextChanged="Replace_Tb_Source_TextChanged"
-                         KeyDown="Replace_Tb_Source_KeyDown" />
+                         KeyDown="Replace_Tb_Source_KeyDown"
+                         MouseDoubleClick="Replace_Tb_Source_MouseDoubleClick" />
                 <Label Content="To"
                        HorizontalAlignment="Left"
                        Margin="208,5,0,0"
@@ -124,7 +143,8 @@
                          Panel.ZIndex="3"
                          TabIndex="4"
                          TextChanged="Replace_tb_Target_TextChanged"
-                         KeyDown="Replace_tb_Target_KeyDown" />
+                         KeyDown="Replace_tb_Target_KeyDown"
+                         MouseDoubleClick="Replace_Tb_Target_MouseDoubleClick" />
                 <CheckBox x:Name="Replace_Cb_RenameFile"
                           Content="Replace file names"
                           HorizontalAlignment="Left"
@@ -156,7 +176,9 @@
                              Margin="219,66,0,0"
                              VerticalAlignment="Top"
                              Panel.ZIndex="7"
-                             TabIndex="8" />
+                             TabIndex="8"
+                             Checked="Replace_Rb_AllDir_Checked"
+                             Unchecked="Replace_Rb_AllDir_Unchecked" />
                 <Button x:Name="Replace_Btn_Rename"
                         Content="Rename"
                         Margin="272,101,0,0"
@@ -167,7 +189,8 @@
                         HorizontalAlignment="Left"
                         Width="75"
                         IsEnabled="False"
-                        TabIndex="9" />
+                        TabIndex="9"
+                        Click="Replace_Btn_Rename_Click" />
                 <Button x:Name="Replace_Btn_Clear"
                         Content="Clear"
                         HorizontalAlignment="Left"
@@ -223,23 +246,30 @@
                          VerticalAlignment="Top"
                          Width="142"
                          Padding="0,4,0,0"
-                         Panel.ZIndex="2" />
+                         Panel.ZIndex="2"
+                         TextChanged="Add_Tb_Source_TextChanged"
+                         KeyDown="Add_Tb_Source_KeyDown"
+                         MouseDoubleClick="Add_Tb_Source_MouseDoubleClick" />
                 <CheckBox x:Name="Add_Cb_RenameFile"
                           Content="Replace file names"
                           HorizontalAlignment="Left"
                           Margin="92,41,0,0"
                           VerticalAlignment="Top"
-                          Panel.ZIndex="4" />
+                          Panel.ZIndex="4"
+                          IsChecked="True"
+                          Checked="Add_Cb_RenameFile_Checked" />
                 <CheckBox x:Name="Add_Cb_RenameFolder"
                           Content="Replace folder names"
                           HorizontalAlignment="Left"
                           Margin="219,41,0,0"
                           VerticalAlignment="Top"
-                          Panel.ZIndex="5" />
+                          Panel.ZIndex="5"
+                          Checked="Add_Cb_RenameFolder_Checked" />
                 <RadioButton x:Name="Add_Rb_CurrentDir"
                              Content="Current directory"
                              HorizontalAlignment="Left"
                              Margin="92,66,0,0"
+                             IsChecked="True"
                              VerticalAlignment="Top"
                              Panel.ZIndex="6" />
                 <RadioButton x:Name="Add_Rb_AllDir"
@@ -247,7 +277,9 @@
                              HorizontalAlignment="Left"
                              Margin="219,66,0,0"
                              VerticalAlignment="Top"
-                             Panel.ZIndex="7" />
+                             Panel.ZIndex="7"
+                             Checked="Add_Rb_AllDir_Checked"
+                             Unchecked="Add_Rb_AllDir_Unchecked" />
                 <Button x:Name="Add_Btn_Rename"
                         Content="Rename"
                         Margin="272,101,0,0"
@@ -257,7 +289,8 @@
                         Panel.ZIndex="8"
                         HorizontalAlignment="Left"
                         Width="75"
-                        IsEnabled="False" />
+                        IsEnabled="False"
+                        Click="Add_Btn_Rename_Click" />
                 <Button x:Name="Add_Btn_Clear"
                         Content="Clear"
                         HorizontalAlignment="Left"
@@ -266,13 +299,26 @@
                         Width="75"
                         Height="23"
                         Padding="1,1,1,2"
-                        Panel.ZIndex="9" />
+                        Panel.ZIndex="9"
+                        Click="Add_Btn_Clear_Click" />
                 <CheckBox x:Name="Add_Cb_AddToFirst"
                           Content="Add to the first"
                           HorizontalAlignment="Left"
                           Margin="241,11,0,0"
                           VerticalAlignment="Top"
                           Panel.ZIndex="4" />
+                <Label x:Name="Add_Lbl_FakeSource"
+                       Content="Text you want to add"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Margin="92,5,0,0"
+                       Panel.ZIndex="4"
+                       Width="129"
+                       Opacity="0.6"
+                       MouseLeftButtonDown="Add_Lbl_FakeSource_MouseLeftButtonDown"
+                       Cursor="IBeam"
+                       MouseEnter="Add_Lbl_FakeSource_MouseEnter"
+                       MouseLeave="Add_Lbl_FakeSource_MouseLeave" />
             </Grid>
         </GroupBox>
         <StatusBar x:Name="StatusBar"
